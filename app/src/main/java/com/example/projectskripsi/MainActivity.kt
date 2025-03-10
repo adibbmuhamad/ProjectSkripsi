@@ -5,27 +5,28 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.projectskripsi.ui.navigation.AppNavigation
-import com.example.projectskripsi.ui.screen.AnnouncementPage
 import com.example.projectskripsi.ui.screen.AnnouncementViewModel
+import com.example.projectskripsi.ui.screen.StudentViewModel
 import com.example.projectskripsi.ui.theme.ProjectSkripsiTheme
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: AnnouncementViewModel by viewModels()
+    private val announcementViewModel: AnnouncementViewModel by viewModels()
+    private val studentViewModel: StudentViewModel by viewModels() // Inisialisasi StudentViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             ProjectSkripsiTheme {
-                AppNavigation(viewModel = viewModel) // Ini menjadi root composable
+                AppNavigation(
+                    announcementViewModel = announcementViewModel,
+                    studentViewModel = studentViewModel // Teruskan StudentViewModel ke AppNavigation
+                )
             }
         }
     }
@@ -33,7 +34,16 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-private fun AnnouncementPagePreview() {
-    // Gunakan Preview untuk melihat tampilannya
-    AnnouncementPage(navController = NavController(LocalContext.current), viewModel = AnnouncementViewModel())
+private fun AppPreview() {
+    val navController = rememberNavController()
+    val announcementViewModel = AnnouncementViewModel()
+    val studentViewModel = StudentViewModel() // Inisialisasi StudentViewModel
+
+    ProjectSkripsiTheme {
+        AppNavigation(
+            announcementViewModel = announcementViewModel,
+            studentViewModel = studentViewModel)
+
+    }
+
 }
