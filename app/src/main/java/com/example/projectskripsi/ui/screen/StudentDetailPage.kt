@@ -1,39 +1,89 @@
 package com.example.projectskripsi.ui.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import android.util.Log
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @Composable
 fun StudentDetailPage(
     navController: NavController,
-    modifier: Modifier = Modifier,
-    studentDetailViewModel: StudentDetailViewModel = viewModel(),
-    studentId: Int,
     viewModel: StudentDetailViewModel,
-    ) {
-    studentDetailViewModel.getStudentDetail(studentId)
-    val studentDetail = studentDetailViewModel.selectedStudent.value
-    val isLoading = studentDetailViewModel.isLoading.value
-    val errorMessage = studentDetailViewModel.errorMessage.value
+    studentId: Int,
+    modifier: Modifier = Modifier
+) {
+    val studentDetail = remember { viewModel.selectedStudent }
+    val isLoading = remember { viewModel.isLoading }
+    val errorMessage = remember { viewModel.errorMessage }
 
-    if (isLoading) {
-        Text("Loading...")
-    } else if (errorMessage.isNotEmpty()) {
-        Text(errorMessage)
-    } else {
-        studentDetail?.let {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(text = "Name: ${it.name}")
-                Text(text = "Class Room: ${it.classRoom}")
-                Text(text = "NISN: ${it.nisn}")
-                Text(text = "Address: ${it.address}")
+    LaunchedEffect(studentId) {
+        viewModel.getStudentDetail(studentId)
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp, top = 32.dp)
+    ) {
+        if (isLoading.value) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+        } else if (errorMessage.value.isNotEmpty()) {
+            Text(text = errorMessage.value, color = MaterialTheme.colorScheme.error)
+        } else {
+            studentDetail.value?.let {
+                Log.d("StudentDetailPage", "Displaying student detail: $it")
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = it.name,
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Divider()
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Class Room: ${it.classRoom}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "NISN: ${it.nisn}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Address: ${it.address}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
+            } ?: run {
+                Log.d("StudentDetailPage", "Student not found")
+                Text(text = "Siswa tidak ditemukan", color = MaterialTheme.colorScheme.error)
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun StudentDetailPagePreview() {
+    // Preview untuk menampilkan tampilan composable di editor
+    StudentDetailPage(
+        navController = NavController(LocalContext.current),
+        viewModel = StudentDetailViewModel(),
+        studentId = 1
+    )
 }
