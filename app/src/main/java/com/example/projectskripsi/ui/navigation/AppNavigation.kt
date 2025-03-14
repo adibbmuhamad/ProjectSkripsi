@@ -91,7 +91,7 @@ fun AppNavigation(
         }
 
         composable("class_rooms_page") {
-            ClassRomsPage(navController = navController, modifier = Modifier.fillMaxSize())
+            ClassRoomsPage(navController = navController, modifier = Modifier.fillMaxSize())
         }
     }
 }
