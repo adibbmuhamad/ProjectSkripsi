@@ -96,6 +96,14 @@ fun MainPage(navController: NavController, modifier: Modifier = Modifier) {
                     navController.navigate("violation_page")
                 }
             )
+
+            FeatureButton(
+                iconRes = R.drawable.ic_x_circle,
+                label = "Class Rooms",
+                onClick = {
+                    navController.navigate("class_rooms_page")
+                }
+            )
         }
     }
 }

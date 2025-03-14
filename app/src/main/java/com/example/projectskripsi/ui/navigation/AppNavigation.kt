@@ -89,5 +89,9 @@ fun AppNavigation(
         composable("violation_page") {
             ViolationPage(navController = navController, modifier = Modifier.fillMaxSize())
         }
+
+        composable("class_rooms_page") {
+            ClassRomsPage(navController = navController, modifier = Modifier.fillMaxSize())
+        }
     }
 }
