@@ -14,8 +14,19 @@ class ClassRoomsViewModel : ViewModel() {
     private val _classRooms = MutableStateFlow<List<ClassRoom>>(emptyList())
     val classRooms: StateFlow<List<ClassRoom>> = _classRooms
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
+
     init {
         fetchClassRooms()
+    }
+
+    fun refreshClassRooms() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            fetchClassRooms()
+            _isRefreshing.value = false
+        }
     }
 
     private fun fetchClassRooms() {

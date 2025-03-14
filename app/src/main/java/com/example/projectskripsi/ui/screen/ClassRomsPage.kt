@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.projectskripsi.data.model.ClassRoom
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +29,7 @@ fun ClassRoomsPage(
     viewModel: ClassRoomsViewModel = viewModel()
 ) {
     val classRooms by viewModel.classRooms.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
 
     Scaffold(
         topBar = {
@@ -40,13 +43,18 @@ fun ClassRoomsPage(
         }
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
-            LazyColumn(
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+            SwipeRefresh(
+                state = rememberSwipeRefreshState(isRefreshing),
+                onRefresh = { viewModel.refreshClassRooms() }
             ) {
-                items(classRooms) { classRoom ->
-                    ClassRoomItem(classRoom) {
-                        // Handle item click, e.g., navigate to detail page
+                LazyColumn(
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(classRooms) { classRoom ->
+                        ClassRoomItem(classRoom) {
+                            // Handle item click, e.g., navigate to detail page
+                        }
                     }
                 }
             }
