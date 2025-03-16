@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class StudentDetailResponse(
     @SerializedName("data")
-    val data: StudentDetail
+    val data: Student1Detail
 )
 
-data class StudentDetail(
+data class Student1Detail(
     val id: Int,
     val name: String,//
     val parent_email: String,//

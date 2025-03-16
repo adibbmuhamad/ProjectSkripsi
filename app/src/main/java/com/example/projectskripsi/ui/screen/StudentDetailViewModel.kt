@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.projectskripsi.data.model.StudentDetail
+import com.example.projectskripsi.data.model.Student1Detail
 import com.example.projectskripsi.data.repository.StudentRepository
 import kotlinx.coroutines.launch
 
@@ -12,7 +12,7 @@ class StudentDetailViewModel : ViewModel() {
 
     private val repository = StudentRepository()
 
-    var selectedStudent = mutableStateOf<StudentDetail?>(null)
+    var selectedStudent = mutableStateOf<Student1Detail?>(null)
     var isLoading = mutableStateOf(false)
     var errorMessage = mutableStateOf("")
 
