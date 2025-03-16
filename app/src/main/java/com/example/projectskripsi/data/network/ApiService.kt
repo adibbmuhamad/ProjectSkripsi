@@ -3,7 +3,7 @@ package com.example.projectskripsi.data.network
 import com.example.projectskripsi.data.model.AnnouncementDetailResponse
 import com.example.projectskripsi.data.model.AnnouncementResponse
 import com.example.projectskripsi.data.model.ClassRoomsResponse
-import com.example.projectskripsi.data.model.StudentDetailResponse
+import com.example.projectskripsi.data.model.Student1DetailResponse
 import com.example.projectskripsi.data.model.StudentResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -23,7 +23,7 @@ interface ApiService {
     suspend fun getStudents(): Response<StudentResponse>
 
     @GET("api/students/{id}")
-    suspend fun getStudentDetail(@Path("id") id: Int): Response<StudentDetailResponse>
+    suspend fun getStudentDetail(@Path("id") id: Int): Response<Student1DetailResponse>
 
     @GET("api/classrooms")
     suspend fun getClassRooms(): Response<ClassRoomsResponse>

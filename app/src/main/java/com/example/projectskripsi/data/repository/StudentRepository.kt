@@ -1,7 +1,7 @@
 package com.example.projectskripsi.data.repository
 
 import android.util.Log
-import com.example.projectskripsi.data.model.StudentDetailResponse
+import com.example.projectskripsi.data.model.Student1DetailResponse
 import com.example.projectskripsi.data.model.StudentResponse
 import com.example.projectskripsi.data.network.RetrofitClient
 import retrofit2.Response
@@ -21,7 +21,7 @@ class StudentRepository {
         return response
     }
 
-    suspend fun getStudentDetail(id: Int): Response<StudentDetailResponse> {
+    suspend fun getStudentDetail(id: Int): Response<Student1DetailResponse> {
         Log.d(TAG, "getStudentDetail: Fetching student detail for ID $id from API")
         val response = RetrofitClient.apiService.getStudentDetail(id)
         if (response.isSuccessful) {

@@ -2,7 +2,7 @@ package com.example.projectskripsi.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class StudentDetailResponse(
+data class Student1DetailResponse(
     @SerializedName("data")
     val data: Student1Detail
 )
