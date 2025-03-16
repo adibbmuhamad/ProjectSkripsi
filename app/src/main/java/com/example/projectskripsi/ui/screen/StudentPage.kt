@@ -9,12 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.projectskripsi.data.model.Student
+import com.example.projectskripsi.data.model.Student1
 
 @Composable
 fun StudentPage(
@@ -22,7 +20,7 @@ fun StudentPage(
     viewModel: StudentViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    val students = viewModel.students
+    val students = viewModel.student1s
     val isLoading = viewModel.isLoading.value
     val errorMessage = viewModel.errorMessage.value
 
@@ -51,7 +49,7 @@ fun StudentPage(
 }
 
 @Composable
-fun StudentItem(student: Student, onClick: () -> Unit) {
+fun StudentItem(student1: Student1, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -61,17 +59,17 @@ fun StudentItem(student: Student, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = student.name,
+                text = student1.name,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Class Room: ${student.class_room_name}",
+                text = "Class Room: ${student1.class_room_name}",
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = "NISN: ${student.nisn}",
+                text = "NISN: ${student1.nisn}",
                 style = MaterialTheme.typography.bodyMedium
             )
         }

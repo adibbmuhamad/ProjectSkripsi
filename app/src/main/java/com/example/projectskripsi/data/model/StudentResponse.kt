@@ -1,14 +1,12 @@
 package com.example.projectskripsi.data.model
 
-import com.google.gson.annotations.SerializedName
-
 data class StudentResponse(
-    val data: List<Student>,
+    val data: List<Student1>,
     val links: Links,
     val meta: Meta
 )
 
-data class Student(
+data class Student1(
     val id: Int,
     val name: String,
     val parent_email: String,

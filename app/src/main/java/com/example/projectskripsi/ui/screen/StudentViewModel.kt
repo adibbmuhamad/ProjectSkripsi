@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.projectskripsi.data.model.Student
+import com.example.projectskripsi.data.model.Student1
 import com.example.projectskripsi.data.repository.StudentRepository
 import kotlinx.coroutines.launch
 
@@ -13,7 +13,7 @@ class StudentViewModel : ViewModel() {
 
     private val repository = StudentRepository()
 
-    var students = mutableStateListOf<Student>()
+    var student1s = mutableStateListOf<Student1>()
     var isLoading = mutableStateOf(false)
     var errorMessage = mutableStateOf("")
 
@@ -27,8 +27,8 @@ class StudentViewModel : ViewModel() {
                 val response = repository.getStudents()
                 if (response.isSuccessful) {
                     Log.d(TAG, "getStudents: Successfully fetched students")
-                    students.clear()
-                    students.addAll(response.body()?.data ?: emptyList())
+                    student1s.clear()
+                    student1s.addAll(response.body()?.data ?: emptyList())
                 } else {
                     errorMessage.value = "Failed to load data"
                     Log.e(TAG, "getStudents: Failed to load data, response code: ${response.code()}")
