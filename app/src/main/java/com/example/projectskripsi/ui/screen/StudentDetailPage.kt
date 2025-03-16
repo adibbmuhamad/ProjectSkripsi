@@ -59,7 +59,7 @@ fun StudentDetailPage(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Class Room: ${it.class_room_id}",
+                            text = "Class Room: ${it.class_room_name}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
