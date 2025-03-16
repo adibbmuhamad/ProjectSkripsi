@@ -54,7 +54,12 @@ fun StudentDetailPage(
                         Divider()
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Class Room: ${it.classRoom}",
+                            text = "Gender: ${it.gender}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Class Room: ${it.class_room_id}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
@@ -65,6 +70,21 @@ fun StudentDetailPage(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Address: ${it.address}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Parent Name: ${it.parent_name}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Parent Email: ${it.parent_email}",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Phone Number: ${it.phone_number}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }

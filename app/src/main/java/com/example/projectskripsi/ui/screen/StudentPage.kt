@@ -67,7 +67,7 @@ fun StudentItem(student: Student, onClick: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Class Room: ${student.classRoom}",
+                text = "Class Room: ${student.class_room_id}",
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
@@ -76,17 +76,4 @@ fun StudentItem(student: Student, onClick: () -> Unit) {
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun StudentPagePreview() {
-    // Gunakan Preview untuk melihat tampilannya
-    val dummyStudents = listOf(
-        Student(1, "Cayadi Siregar M.Ak", "7A", "hadi.uyainah@yahoo.co.id", "1818624585", "Kpg. Arifin No. 602, Pekalongan 95575, Kaltim", "2025-03-02T23:26:12.000000Z", "2025-03-02T23:26:12.000000Z"),
-        Student(15, "Titi Haryanti", "7B", "skusmawati@gmail.co.id", "7215350466", "Jr. Bara No. 683, Parepare 45230, Maluku", "2025-03-02T23:26:13.000000Z", "2025-03-02T23:26:13.000000Z")
-    )
-    StudentPage(navController = NavController(LocalContext.current), viewModel = StudentViewModel().apply {
-        students.addAll(dummyStudents)
-    })
 }

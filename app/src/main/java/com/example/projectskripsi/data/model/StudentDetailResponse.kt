@@ -9,11 +9,14 @@ data class StudentDetailResponse(
 
 data class StudentDetail(
     val id: Int,
-    val name: String,
-    @SerializedName("class_room") val classRoom: String,
-    @SerializedName("parent_email") val parentEmail: String,
-    val nisn: String,
-    val address: String,
-    @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String
+    val name: String,//
+    val parent_email: String,//
+    val nisn: String,//
+    val address: String,//
+    val created_at: String,
+    val updated_at: String,
+    val class_room_id: Int,//
+    val gender: String,//
+    val parent_name: String,//
+    val phone_number: String//
 )
