@@ -67,7 +67,7 @@ fun StudentItem(student: Student, onClick: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Class Room: ${student.class_room_id}",
+                text = "Class Room: ${student.class_room_name}",
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(

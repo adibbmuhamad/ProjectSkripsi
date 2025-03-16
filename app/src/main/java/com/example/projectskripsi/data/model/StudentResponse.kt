@@ -17,6 +17,7 @@ data class Student(
     val created_at: String,
     val updated_at: String,
     val class_room_id: Int,
+    val class_room_name: String,
     val gender: String,
     val parent_name: String,
     val phone_number: String
